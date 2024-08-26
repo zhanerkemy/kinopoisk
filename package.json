@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3",
+    "nodemon": "^3.1.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "kinopoisk",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Myrzabekova",
+  "license": "ISC",
+  "description": ""
+}
