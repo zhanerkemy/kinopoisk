@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+require('./server/config/db')
+
 app.use(express.static(__dirname + '/public'))
 
 app.set("view engine", "ejs")
