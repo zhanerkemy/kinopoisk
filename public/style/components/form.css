@@ -31,7 +31,7 @@ fieldset{
 
 .fieldset input{
     width: 100%;
-    padding: 12px 20px;
+    padding: 15px 20px;
     outline: none;
     border: 1px solid rgba(31, 31, 31, .1);
     border-radius: 7px;
@@ -49,4 +49,12 @@ fieldset{
     font-weight: 600;
     border-radius: 7px;
     cursor: pointer;
+}
+
+.fieldset select{
+    padding: 15px 20px;
+    border: 1px solid rgba(31, 31, 31, .1);
+    border-radius: 7px;
+    font-size: 15px;
+    box-sizing: border-box;
 }
