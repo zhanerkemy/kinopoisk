@@ -25,6 +25,10 @@ app.get('/admin', (req, res) => {
     res.render("adminProfile")
 })
 
+app.get('/new', (req, res) => {
+    res.render("newFilm")
+})
+
 const PORT = 8000
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
