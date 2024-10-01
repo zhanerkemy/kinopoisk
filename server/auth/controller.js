@@ -30,7 +30,8 @@ const signUp = async(req, res) => {
 }
 
 const signIn = (req, res) => {
-    res.redirect('/profile')
+    console.log(req.user);
+    res.redirect(`/profile/${req.user._id}`)
 }
 
 module.exports = { 
