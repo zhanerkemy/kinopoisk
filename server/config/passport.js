@@ -9,19 +9,20 @@ passport.use(new LocalStrategy(
     },
     function(email, password, done){
         User.findOne({email}).then(user => {
-            if(user.password){
+            if(user && user.password){
                 bcrypt.compare(password, user.password, function(err, result){
                     if(err) {return done(err)}
                     if(result) {return done(null, user)}
                 });
             } else{
-                return done('Пользователь не найден')
+                return done('Пользователь не найден');
             }
+            
         }).catch(e => {
             return done(e)
         })
     }
-))
+));
 
 passport.serializeUser(function(user, done){
     console.log(user);

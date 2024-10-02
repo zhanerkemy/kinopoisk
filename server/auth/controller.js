@@ -16,7 +16,6 @@ const signUp = async(req, res) => {
     if(findUser){
         res.redirect('/register?error=3')
     }
-
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
             new User({
@@ -31,8 +30,11 @@ const signUp = async(req, res) => {
 }
 
 const signIn = (req, res) => {
-    console.log(req.user);
-    res.redirect(`/profile/${req.user._id}`)
+    if(req.user.isAdmin){
+        res.redirect(`/admin/${req.user._id}`)
+    } else{
+        res.redirect(`/profile/${req.user._id}`)
+    }
 }
 
 const signOut = (req, res) => {
