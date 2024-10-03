@@ -29,6 +29,9 @@ app.use(require('./server/Genres/router'))
 app.use(require('./server/Country/router'))
 app.use(require('./server/auth/router'))
 app.use(require('./server/Films/router'))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 const PORT = 8000
 app.listen(PORT, () => {

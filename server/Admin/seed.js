@@ -24,8 +24,6 @@ async function createAdmin() {
                     console.log('Admin account created');
                 });
             });
-        } else {
-            console.log('Admin already exists');
         }
     } catch (error) {
         console.error('Error creating admin:', error);

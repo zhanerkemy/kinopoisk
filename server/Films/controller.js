@@ -1,6 +1,29 @@
+const Film = require('./Film')
+
 const createFilm = (req, res) => {
-    console.log(req.body);
-    res.send('ok')
+    console.log(req.body.titleRus);
+    if(req.file &&
+        req.body.titleRus.length > 2 && 
+        req.body.titleEng.length > 2 &&
+        req.body.year > 0 &&
+        req.body.time > 10 &&
+        req.body.country.length > 2 &&
+        req.body.genre.length > 2)
+        {
+            // new Film({
+            //     titleRus: req.body.titleRus,
+            //     titleEng: req.body.titleEng,
+            //     year: req.body.year, 
+            //     time: req.body.time,
+            //     country: req.body.country,
+            //     genre: req.body.genre,
+            //     image: `${req.file.destination}/${req.file.filename}`
+            // }).save()
+            // res.redirect(`/admin/${req.user._id}`)
+            res.redirect('/new')
+    } else{
+        res.redirect('/new?error=1')
+    }
 }
 
 module.exports = {
