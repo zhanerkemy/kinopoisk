@@ -1,4 +1,5 @@
 const Film = require('./Film')
+const User = require('../auth/User')
 const fs = require('fs')    //these two libraries are used in deleting images
 const path = require('path')
 
@@ -75,8 +76,25 @@ const deleteFilm = async(req, res) => {
     }
 }
 
+const saveFilm = async(req, res) => {
+    if(req.user && req.body.id){
+        const user = await User.findById(req.user._id)
+        const findFilm = user.toWatch.filter(item => item._id == req.body.id);
+        // console.log(findFilm);    
+        // user.toWatch = []
+        if(findFilm.length == 0){
+            user.toWatch.push(req.body.id);
+            user.save()
+            res.send('Фильм успешно сохранен')
+        } else{
+            res.send('Фильм уже сохранен')
+        }
+    }
+}
+
 module.exports = {
     createFilm,
     editFilm,
-    deleteFilm
+    deleteFilm,
+    saveFilm
 }

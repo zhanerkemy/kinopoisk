@@ -10,6 +10,7 @@ require('./server/config/passport')
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded()) //for auth post method
+app.use(express.json())
 app.use(session({
     name: 'kinopoisk.session',
     secret: 'keyboard cat', //secret key
@@ -30,7 +31,6 @@ app.use(require('./server/Country/router'))
 app.use(require('./server/auth/router'))
 app.use(require('./server/Films/router'))
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 
 const PORT = 8000
