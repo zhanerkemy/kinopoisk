@@ -21,7 +21,9 @@ router.get('/register', (req, res) => {
 
 router.get('/profile/:id', async (req, res) => {
     const allGenres = await Genres.find() 
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id).populate('toWatch')
+    .populate({path: 'toWatch', populate: {path: 'country'}})
+    .populate({path: 'toWatch', populate: {path: 'genre'}})
     if(user){
         res.render("profile", {genres: allGenres, user: user, loginUser: req.user}) //loginUser gives information about in whose account we are
     }
