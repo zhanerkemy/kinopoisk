@@ -25,13 +25,13 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done){
-    console.log(user);
+    // console.log(user);
     done(null, user._id)
 })
 
 passport.deserializeUser(function(id, done){ //it works in every loading, we will get id
     User.findById(id).then((user, err) => {
-        console.log(id);
+        // console.log(id);
         done(err, user)
     })
 })

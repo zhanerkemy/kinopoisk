@@ -1,4 +1,6 @@
 const Film = require('./Film')
+const fs = require('fs')    //these two libraries are used in deleting images
+const path = require('path')
 
 const createFilm = async (req, res) => {
     if(req.file &&
@@ -26,8 +28,8 @@ const createFilm = async (req, res) => {
     }
 }
 
-const editFilm = (req, res) => {
-    if(req.file &&
+const editFilm = async (req, res) => {
+    if( req.file &&
         req.body.titleRus.length > 2 && 
         req.body.titleEng.length > 2 &&
         req.body.year > 0 &&
@@ -35,7 +37,28 @@ const editFilm = (req, res) => {
         req.body.country.length > 0 &&
         req.body.genre.length > 0
     ){
-
+        const films = await Film.findById(req.body.id)
+        fs.unlinkSync(path.join(__dirname + '../../../public' + films.image)) //delete img
+        films.titleRus = req.body.titleRus;
+        films.titleEng = req.body.titleEng;
+        films.year = req.body.year;
+        films.time = req.body.time;
+        blog.country = req.body.country;
+        films.genre = req.body.genre;
+        films.image = `/images/films/${req.file.filename}`; 
+        films.author = req.user._id;
+        films.save();  //--> 1st method
+        // await Film.findByIdAndUpdate(req.body.id, {
+        //     titleRus: req.body.titleRus,
+        //     titleEng: req.body.titleEng,
+        //     year: req.body.year,
+        //     time: req.body.time,
+        //     country: req.body.country,
+        //     genre: req.body.genre,
+        //     image: `/images/films/${req.file.filename}`,
+        //     author: req.user._id
+        // })
+        res.redirect('/admin/' + req.user._id)
     } else{
         res.redirect(`/edit/${req.body.id}?error=1`) 
     }
