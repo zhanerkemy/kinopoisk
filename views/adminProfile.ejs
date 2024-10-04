@@ -33,31 +33,38 @@
                 </div>
                 <h3>Фильмы</h3>
                 <a href="/new" class="add-btn">Добавить фильм</a>
-                <div class="main-card">
-                    <div class="card-left">
-                        <div class="film-img">
-                            <img src="/images/films/film1.webp" alt="">
+                <%
+                    films.forEach(item => {
+                %>
+                    <div class="main-card">
+                        <div class="card-left">
+                            <div class="film-img">
+                                <img src="<%= item.image %>" alt="">
+                            </div>
+                            <div class="film-info">
+                                <a href=""><%= item.titleRus %></a>
+                                <a href=""><%= item.titleEng %>, <%= item.year %>, <%= item.time%> мин.</a>
+                                <a href=""><%= item.country.name %>, <%= item.genre.name %></a>
+                                <a href="">Автор: <%= item.author.full_name %></a>
+                                <button class="film-btn">
+                                    <img src="/images/icons/play.svg" alt="">
+                                    Смотреть
+                                </button>
+                            </div>
                         </div>
-                        <div class="film-info">
-                            <a href="">Все везде и сразу</a>
-                            <a href="">Everything Everywhere All at Once, 2021, 139 мин.</a>
-                            <a href="">США, Фантастика</a>
-                            <button class="film-btn">
-                                <img src="/images/icons/play.svg" alt="">
-                                Смотреть
-                            </button>
+                        <div class="card-right">
+                            <div class="film-rate">
+                                <p>7.3</p>
+                            </div>
+                            <div class="film-btns">
+                                <a href="/edit/<%=item._id%>">Редактировать профиль</a>
+                                <a href="">Удалить</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-right">
-                        <div class="film-rate">
-                            <p>7.3</p>
-                        </div>
-                        <div class="film-btns">
-                            <a href="/edit">Редактировать профиль</a>
-                            <a href="">Удалить</a>
-                        </div>
-                    </div>
-                </div>
+                <%
+                    })
+                %>
             </div>
         </div>
     </div>
