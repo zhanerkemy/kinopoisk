@@ -54,4 +54,8 @@ router.get('/not-found', (req, res) => {
     res.render("notFound")
 })
 
+router.get('/detail/:id', (req, res) => {
+    res.render("detail", {user: {}})
+})
+
 module.exports = router
