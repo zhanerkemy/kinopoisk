@@ -11,11 +11,17 @@ router.get('/', async(req, res) => {
     if(genres){
         options.genre = genres._id
     }
-    console.log(options);
+    let page = 0
+    const limit = 3
+    if(req.query.page && req.query.page > 0){
+        page = req.query.page
+    }
+    const totalFilms = await Film.countDocuments()
     const allGenres = await Genres.find()
-    const films = await Film.find(options).populate('country').populate('genre')
+    const films = await Film.find(options).limit(limit).skip(page * limit).populate('country').populate('genre')
     const user = req.user ? await User.findById(req.user._id) : {}
-    res.render("index", {genres: allGenres, user, films})
+    // 4 / 3 = 1 (rem 1) => ceil = 2 (идет в потолок)
+    res.render("index", {genres: allGenres, user, films, pages: Math.ceil(totalFilms / limit)})
 })
 
 router.get('/login', (req, res) => {
