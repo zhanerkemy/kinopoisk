@@ -6,8 +6,14 @@ const User = require('../auth/User')
 const Film = require('../Films/Film')
 
 router.get('/', async(req, res) => {
+    const options = {}
+    const genres = await Genres.findOne({key : req.query.genre})
+    if(genres){
+        options.genre = genres._id
+    }
+    console.log(options);
     const allGenres = await Genres.find()
-    const films = await Film.find().populate('country').populate('genre')
+    const films = await Film.find(options).populate('country').populate('genre')
     const user = req.user ? await User.findById(req.user._id) : {}
     res.render("index", {genres: allGenres, user, films})
 })
