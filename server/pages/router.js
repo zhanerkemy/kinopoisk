@@ -89,4 +89,5 @@ router.get('/detail/:id', async (req, res) => {
     res.render("detail", {user: req.user ? req.user : {}, film: film, rates: rates, averageRate: (averageRate / rates.length).toFixed(1)})
 })
 
+
 module.exports = router
