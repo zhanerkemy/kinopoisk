@@ -62,7 +62,7 @@
             <div class="comments">
                 <h3>Комментарий</h3>
                 <% if(user && user._id){ %>
-                    <form action="" class="add-comment-form">
+                    <form onsubmit="sendRate(event)" class="add-comment-form">
                         <p>Оцените фильм</p>
                         <div class="comment-stars">
                             <img onclick="rateFilm(1)" src="/images/icons/star.svg" alt="">
@@ -72,8 +72,10 @@
                             <img onclick="rateFilm(5)" src="/images/icons/star.svg" alt="">
                         </div>
                         <p>Напишите комментарий</p>
-                        <textarea name=""></textarea>
-                        <button>Сохранить</button>
+                        <textarea id="comment-text"></textarea>
+                        <input type="hidden" value="<%=user._id%>" id="comment_author">
+                        <input type="hidden" value="<%=film._id%>" id="comment_film">
+                        <button type="submit">Сохранить</button>
                     </form>
                 <% } else { %>
                     <p>

@@ -44,3 +44,7 @@
 .comments p{
     margin-top: 20px;
 }
+
+.active-star{
+    filter: grayscale(0%) !important;
+}
