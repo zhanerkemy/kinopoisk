@@ -8,7 +8,7 @@ function addSeries(){
     series.classList.add("series")
     let title = document.createElement('p')
     let input = document.createElement('input')
-    title.innerHTML = number.length + 1 + 'серия'
+    title.innerHTML = number.length + 1 + ' серия'
     input.name = "series"
     input.placeholder = "Введите ссылку на видео"
     series.append(title)
