@@ -6,8 +6,9 @@ const RateSchema = new mongoose.Schema({
     text: String,
     filmId: {type: Schema.Types.ObjectId, ref: 'film'},
     authorId: {type: Schema.Types.ObjectId, ref: 'user'},
-    timeStamps: {
-        date: 'date'
+    date: {
+        type: Date,
+        default: Date.now()
     }
 })
 
